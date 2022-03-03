@@ -6,6 +6,8 @@ TagManager:
   tags:
   - ground
   - coin
+  - platform
+  - pikes
   layers:
   - Default
   - TransparentFX
@@ -43,9 +45,6 @@ TagManager:
   - name: Sky
     uniqueID: 1103947759
     locked: 0
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: BackGround
     uniqueID: 1085905171
     locked: 0
@@ -54,4 +53,7 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 1389850707
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
