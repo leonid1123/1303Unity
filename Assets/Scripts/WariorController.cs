@@ -23,16 +23,20 @@ public class WariorController : MonoBehaviour
     }
     void Update()
     {
+        if (HP<=0){
+            animator.SetTrigger("isDead");
+            this.enabled=false;
+        }
+        if(HP<=0)
+        {
+            //SceneManager.LoadScene("SampleScene");
+        }
         if (Input.GetKey(KeyCode.R))
         {
             SceneManager.LoadScene("SampleScene");
         }
         dir = Input.GetAxisRaw("Horizontal");
-
         animator.SetFloat("walk",Mathf.Abs(dir));
-
-        
-
         rb2d.velocity = new Vector2(dir * speed, rb2d.velocity.y);
         if (toRight && rb2d.velocity.x < 0)
         {
@@ -44,24 +48,18 @@ public class WariorController : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().flipX = false;
             toRight = true;
         }
-
         if (Input.GetButton("Jump") && canJump)
         {
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
         }
         hpText.text = "HP:" + HP.ToString();
-
-        if(HP<=0)
-        {
-            SceneManager.LoadScene("SampleScene");
-        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "ground" || collision.tag=="platform")
         {
             canJump = true;
-            Debug.Log("на земле");
+            Debug.Log("onGround");
         }
         if (collision.tag == "coin")
         {
@@ -73,13 +71,12 @@ public class WariorController : MonoBehaviour
             HP=0;
         }
     }
-
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "ground" || collision.tag=="platform")
         {
             canJump = false;
-            Debug.Log("не на земле");
+            Debug.Log("not on ground");
         }
     }
 }
